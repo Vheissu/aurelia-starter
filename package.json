@@ -1,29 +1,15 @@
 {
   "name": "aurelia-starter",
   "version": "1.0.0",
-  "description": "A barebones starter application for building an Aurelia application",
-  "keywords": [
-    "aurelia",
-    "barebones",
-    "starter",
-    "skeleton"
-  ],
-  "homepage": "http://aurelia.io",
-  "bugs": {
-    "url": "https://github.com/Vheissu/aurelia-starter/issues"
-  },
   "license": "MIT",
   "author": "Dwayne Charrington <dwaynecharrington@gmail.com>",
   "main": "dist/commonjs/index.js",
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/Vheissu/aurelia-starter"
-  },
   "devDependencies": {
     "aurelia-bundler": "^0.1.6",
     "browser-sync": "^1.8.1",
     "del": "^1.1.0",
     "gulp": "^3.8.10",
+    "gulp-autoprefixer": "^3.0.1",
     "gulp-babel": "^5.1.0",
     "gulp-changed": "^1.1.0",
     "gulp-jshint": "^1.9.0",
