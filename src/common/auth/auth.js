@@ -3,8 +3,6 @@ import {HttpClient} from 'aurelia-fetch-client';
 
 @inject(HttpClient)
 export class Auth {
-    clientId = '';
-
     constructor(http) {
         this.http = http;
     }
@@ -28,68 +26,53 @@ export class Auth {
         localStorage.removeItem('client_token');
     }
 
-    setClientId(id) {
-        this.clientId = id;
-    }
+    makeRequest(type, data = {}) {
+        var url = '';
 
-    getClientId() {
-        return this.clientId;
-    }
+        switch(type) {
+            case 'verifyToken':
+                url = 'http://localhost/api/session/verifyToken';
+            case 'requestToken':
+                url = 'http://localhost/api/session/requestToken';
+        }
 
-    requestToken(token) {
-        this.http.fetch('http://localhost/api/token', {
+        return this.http.fetch(url, {
             method: 'POST',
-            body: {
-                client_token: token
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data) {
-                window.localStorage.setItem('access_token', data.access_token);
-                window.localStorage.setItem('client_token', data.client_token);
-
-                return true;
-            } else {
-                return false;
-            }
-        })
-        .catch(err => {
-            throw new Error(err);
+            body: data
         });
+    }
+
+    requestToken(identity, password) {
+        return this.makeRequest('requestToken', {identity: identity, password: password})
+          .then(response => response.json())
+          .then(data => {
+              if (data) {
+                  window.localStorage.setItem('access_token', data.access_token);
+
+                  return true;
+              } else {
+                  return false;
+              }
+          })
+          .catch(err => {
+              throw new Error(err);
+          });
     }
 
     verifyToken(token) {
-        this.http.fetch('http://localhost/api/verifyToken', {
-            method: 'POST',
-            body: {
-                access_token: token
-            }
-        })
-        .then(response => response.text())
-        .then(body => {
-            if (body) {
-                return true;
-            } else {
-                let clientToken = window.localStorage.getItem('client_token');
-
-                if (clientToken == null) {
-                    throw new Error('No client side access token was found.');
-                    return false;
-                } else {
-                    this.requestToken(clientToken);
-                }
-            }
-        })
-        .catch(err => {
-            let clientToken = window.localStorage.getItem('client_token');
-
-            if (clientToken == null) {
-                return false;
-            } else {
-                this.requestToken(clientToken)
-            }
-        });
+        return this.makeRequest('verifyToken', {access_token: token})
+          .then(response => response.text())
+          .then(data => {
+              if (data) {
+                  return true;
+              } else {
+                  return false;
+              }
+          })
+          .catch(err => {
+              throw new Error(err);
+              return false;
+          });
     }
 
 }
