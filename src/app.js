@@ -6,7 +6,7 @@ export class App {
     configureRouter(config, router) {
         config.title = 'Aurelia Starter';
 
-        config.addPipelineStep('authorize', AuthorizeStep);
+        //config.addPipelineStep('authorize', AuthorizeStep);
 
         config.map([
             { route: ['home'], moduleId: './routes/home/index', title: 'Home' }
