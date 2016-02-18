@@ -16,3 +16,4 @@ gulp.task('watch', ['serve'], function() {
     return gulp.src(paths.style)
       .pipe(browserSync.stream());
   }).on('change', reportChange);
+});
