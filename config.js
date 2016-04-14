@@ -19,8 +19,8 @@ System.config({
     "aurelia-templating-binding": "npm:aurelia-templating-binding@1.0.0-beta.1.2.1",
     "aurelia-templating-resources": "npm:aurelia-templating-resources@1.0.0-beta.1.2.2",
     "aurelia-templating-router": "npm:aurelia-templating-router@1.0.0-beta.1.2.0",
-    "fetch": "github:github/fetch@0.10.1",
-    "text": "github:systemjs/plugin-text@0.0.4",
+    "fetch": "github:github/fetch@0.11.0",
+    "text": "github:systemjs/plugin-text@0.0.7",
     "npm:aurelia-binding@1.0.0-beta.1.3.2": {
       "aurelia-metadata": "npm:aurelia-metadata@1.0.0-beta.1.2.0",
       "aurelia-pal": "npm:aurelia-pal@1.0.0-beta.1.2.0",
