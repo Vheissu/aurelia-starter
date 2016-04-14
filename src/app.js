@@ -9,7 +9,7 @@ export class App {
         //config.addPipelineStep('authorize', AuthorizeStep);
 
         config.map([
-            { route: ['home'], moduleId: './routes/home/index', title: 'Home' }
+            { route: ['', 'home'], moduleId: './routes/home/index', title: 'Home' }
             // Auth only route example, does not work, just an example
             //{ route: ['users'], moduleId: './routes/users/index', title: 'Users', auth: true }
         ]);
